@@ -14,7 +14,7 @@ requirements = [
         "numpy == 1.22.4",
         "pandas==2.1.4",
         "py_stringmatching==0.4.6",
-        "py_stringsimjoin==0.3.6",
+        "py_stringsimjoin==0.3.5",
         "scipy == 1.11.3",
         "seaborn == 0.13.2",
         "scikit_learn==1.6.0",

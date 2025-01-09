@@ -6,6 +6,8 @@ from setuptools import setup
 from setuptools.command.install import install
 
 requirements = [
+        "py_stringsimjoin==0.3.5",
+        "py_stringmatching==0.4.6",
         "fancyimpute == 0.7.0",
         "impyute == 0.0.8",
         "jellyfish == 0.6.1",
@@ -13,8 +15,6 @@ requirements = [
         "matplotlib == 3.5.3",
         "numpy == 1.22.4",
         "pandas==2.1.4",
-        "py_stringmatching==0.4.6",
-        "py_stringsimjoin==0.3.5",
         "scipy == 1.11.3",
         "seaborn == 0.13.2",
         "scikit_learn==1.6.0",

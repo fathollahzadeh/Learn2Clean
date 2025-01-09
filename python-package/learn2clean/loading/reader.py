@@ -326,7 +326,7 @@ class Reader():
                                      sep=self.sep,
                                      header=self.header,
                                      engine='c',
-                                     error_bad_lines=False,
+                                     #error_bad_lines=False,
                                      encoding='ISO-8859-1')
 
             elif (type_doc == 'xls'):

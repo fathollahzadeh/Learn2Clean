@@ -9,8 +9,8 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from joblib import Parallel, delayed
-import seaborn as sns
-import matplotlib.pyplot as plt
+#import seaborn as sns
+#import matplotlib.pyplot as plt
 from scipy.stats import kurtosis, skew
 
 
@@ -192,36 +192,36 @@ def profile_summary(dataset, plot=False):
 
         pf.loc[len(pf)] = row
 
-        if plot:
-
-            print("Frequency plot per attribute")
-
-            for attribute in dataset.columns:
-
-                unique_values = pd.unique(dataset[attribute])
-
-                num_missing = sum(pd.isnull(dataset[attribute]))
-
-                print('Attribute: %s\nNumber of unique values: %d\nNumber '
-                      'of missing values: '
-                      '%d\nUnique values:' %
-                      (attribute, len(unique_values), num_missing))
-
-                print('\nFrequency plot:\n')
-
-                d = (pd.DataFrame(dataset[attribute].value_counts()))
-
-                ax = sns.barplot(x="index", y=attribute,
-                                 data=(d).reset_index())
-
-                ax.set(xlabel=attribute, ylabel='count')
-
-                ax.grid(b=True, which='major', color='w', linewidth=1.0)
-
-                ax.set_xticklabels(
-                    labels=d.sort_index().index.values, rotation=90)
-
-                plt.show()
+        # if plot:
+        #
+        #     print("Frequency plot per attribute")
+        #
+        #     for attribute in dataset.columns:
+        #
+        #         unique_values = pd.unique(dataset[attribute])
+        #
+        #         num_missing = sum(pd.isnull(dataset[attribute]))
+        #
+        #         print('Attribute: %s\nNumber of unique values: %d\nNumber '
+        #               'of missing values: '
+        #               '%d\nUnique values:' %
+        #               (attribute, len(unique_values), num_missing))
+        #
+        #         print('\nFrequency plot:\n')
+        #
+        #         d = (pd.DataFrame(dataset[attribute].value_counts()))
+        #
+        #         ax = sns.barplot(x="index", y=attribute,
+        #                          data=(d).reset_index())
+        #
+        #         ax.set(xlabel=attribute, ylabel='count')
+        #
+        #         ax.grid(b=True, which='major', color='w', linewidth=1.0)
+        #
+        #         ax.set_xticklabels(
+        #             labels=d.sort_index().index.values, rotation=90)
+        #
+        #         plt.show()
 
     print("Profiling datasets")
 
@@ -461,7 +461,7 @@ class Reader():
                 if (target_name in df.columns):
 
                     df_train, df_test, y_train, y_test = train_test_split(
-                        df, df[target_name], test_size=0.33)
+                        df, df[target_name], test_size=0.3)
 
                 elif (target_name is None):
 
@@ -483,14 +483,14 @@ class Reader():
                     # Checking if the target exists to split into
                     # test and train
                     if (target_name in df.columns):
-
                         is_null = df[target_name].isnull()
+                        if "train" in path:
+                           df_train[path] = df[~is_null].drop(target_name, axis=1)
+                           y_train[path] = df[target_name][~is_null]
+                        else:
+                            y_test[path] = df[target_name][is_null]
+                            df_test[path] = df[~is_null].drop(target_name, axis=1)
 
-                        df_train[path] = df[~is_null].drop(target_name, axis=1)
-                        y_test[path] = df[target_name][is_null]
-                        df_test[path] = df[~is_null].drop(target_name, axis=1)
-
-                        y_train[path] = df[target_name][~is_null]
 
                         # y_test[path] = y_train[path]
                         # print(df_train[path].shape[0],df_test[path].shape[0])
@@ -502,7 +502,6 @@ class Reader():
                             "provide a training and a testing dataset. ")
 
                     else:
-
                         df_test[path] = df
 
                 del df

@@ -4,7 +4,7 @@
 import time
 import warnings
 from sklearn.model_selection import cross_val_score
-from pyearth import Earth
+# from pyearth import Earth
 import pandas as pd
 from sklearn.linear_model import LassoCV
 from sklearn.metrics import mean_squared_error
@@ -235,30 +235,31 @@ class Regressor():
             # X_train = X_train.drop([target], 1)
 
         else:
+            cv_mars = None
 
-            model = Earth(enable_pruning=True, penalty=3,
-                          minspan_alpha=0.05, endspan_alpha=0.05)
-
-            model.fit(X_train, y_train)
-
-            def rmse_cv(model):
-
-                rmse = np.sqrt(-cross_val_score(model, X_train,
-                                                np.log1p(y_train),
-                                                scoring="neg_mean_"
-                                                "squared_error", cv=k))
-
-                return(rmse)
-
-            cv_mars = rmse_cv(model).mean()
-
-            if self.verbose:
-
-                print(model.summary())
-
-            print("MSE of MARS with", k, "folds "
-                  "for cross-validation:", cv_mars)
-
+        #     model = Earth(enable_pruning=True, penalty=3,
+        #                   minspan_alpha=0.05, endspan_alpha=0.05)
+        #
+        #     model.fit(X_train, y_train)
+        #
+        #     def rmse_cv(model):
+        #
+        #         rmse = np.sqrt(-cross_val_score(model, X_train,
+        #                                         np.log1p(y_train),
+        #                                         scoring="neg_mean_"
+        #                                         "squared_error", cv=k))
+        #
+        #         return(rmse)
+        #
+        #     cv_mars = rmse_cv(model).mean()
+        #
+        #     if self.verbose:
+        #
+        #         print(model.summary())
+        #
+        #     print("MSE of MARS with", k, "folds "
+        #           "for cross-validation:", cv_mars)
+        #
         return cv_mars
 
     def transform(self):

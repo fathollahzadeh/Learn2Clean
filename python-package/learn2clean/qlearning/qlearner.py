@@ -704,6 +704,7 @@ class Qlearner():
                   mode='a') as rr_file:
 
             print("{}".format(rr), file=rr_file)
+        return rr
 
     def random_cleaning(self, dataset_name):
 

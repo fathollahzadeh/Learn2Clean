@@ -6,21 +6,20 @@ from setuptools import setup
 from setuptools.command.install import install
 
 requirements = [
-        "py_stringsimjoin==0.3.5",
-        "py_stringmatching==0.4.6",
-        "fancyimpute == 0.7.0",
-        "impyute == 0.0.8",
-        "jellyfish == 0.6.1",
-        "joblib == 1.4.2",
-        "matplotlib == 3.5.3",
-        "numpy == 1.22.4",
-        "pandas==2.1.4",
-        "scipy == 1.11.3",
-        "seaborn == 0.13.2",
-        "scikit_learn==1.6.0",
-        #sklearn_contrib_py_earth == 0.1.0
-        "statsmodels == 0.13.5",
-        "tdda == 2.0.9"
+    "pandas == 1.5.3",
+    "py_stringmatching == 0.4.6",
+    "py_stringsimjoin == 0.3.5",
+    "PyYAML == 6.0.1",
+    "fancyimpute == 0.7.0",
+    "impyute == 0.0.8",
+    "jellyfish == 0.6.1",
+    "joblib == 1.4.2",
+    "matplotlib == 3.5.3",
+    "numpy == 1.22.4",
+    "scipy == 1.9.3",
+    "seaborn == 0.13.2",
+    "statsmodels == 0.13.5",
+    "tdda == 2.0.9"
 ]
 
 
@@ -68,9 +67,9 @@ setup(
         'learn2clean.outlier_detection',
         'learn2clean.feature_selection',
         'learn2clean.qlearning',
-        #'learn2clean.classification',
-        #'learn2clean.regression',
-        #'learn2clean.clustering'
+        'learn2clean.classification',
+        'learn2clean.regression',
+        'learn2clean.clustering'
         ],
     package_dir={
         'learn2clean': 'learn2clean',
@@ -82,9 +81,9 @@ setup(
         'learn2clean.outlier_detection': 'learn2clean/outlier_detection',
         'learn2clean.feature_selection': 'learn2clean/feature_selection',
         'learn2clean.qlearning': 'learn2clean/qlearning',
-        #'learn2clean.classification': 'learn2clean/classification',
-        #'learn2clean.regression': 'learn2clean/regression',
-        #'learn2clean.clustering': 'learn2clean/clustering'
+        'learn2clean.classification': 'learn2clean/classification',
+        'learn2clean.regression': 'learn2clean/regression',
+        'learn2clean.clustering': 'learn2clean/clustering'
     },
     include_package_data=True,
     cmdclass={

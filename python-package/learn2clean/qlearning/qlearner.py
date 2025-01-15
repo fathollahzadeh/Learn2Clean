@@ -824,7 +824,8 @@ class Qlearner():
 
                 print("{}".format(rr), file=rr_file)
 
-        return p[1]
+        #return p[1]
+        return rr
 
     def no_prep(self, dataset_name):
 

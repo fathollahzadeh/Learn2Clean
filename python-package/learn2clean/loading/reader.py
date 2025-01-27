@@ -488,8 +488,8 @@ class Reader():
                            df_train[path] = df[~is_null].drop(target_name, axis=1)
                            y_train[path] = df[target_name][~is_null]
                         else:
-                            y_test[path] = df[target_name][is_null]
-                            df_test[path] = df[~is_null].drop(target_name, axis=1)
+                            y_test[path] = df[target_name]
+                            df_test[path] = df.drop(target_name, axis=1)
 
 
                         # y_test[path] = y_train[path]
@@ -850,7 +850,6 @@ class Reader():
             else:
 
                 pass
-
             return {"train": df_train,
                     "test": df_test,
                     "target": y_train,
